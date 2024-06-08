@@ -92,7 +92,7 @@ for s_path in glob.glob('output0*'):
     print(f'processing: {s_path}')
     i_episode = int(s_path.replace('output',''))
     mcdsts = pcdl.TimeSeries(s_path)
-    df_cell = mcdsts.get_cell_df().drop({'runtime','ID'}, axis=1)
+    df_cell = mcdsts.get_cell_df().drop({'runtime'}, axis=1)  # 'ID'
     df_conc = mcdsts.get_conc_df().drop({'runtime'}, axis=1)
     df_cell.to_csv(f'timeseries_cell_episode{str(i_episode).zfill(3)}.csv')
     df_conc.to_csv(f'timeseries_conc_episode{str(i_episode).zfill(3)}.csv')

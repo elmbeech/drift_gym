@@ -294,9 +294,9 @@ class CorePhysiCellEnv(gymnasium.Env):
             physicell.start()
         else:
             # bue 20240608: restart worx! work on reset.
-	    #physicell.restart()
-	    physicell.reset()
-	    physicell.start()
+            #physicell.restart()
+            #physicell.reset()
+            physicell.start()
 
         # observe domain
         if self.verbose:

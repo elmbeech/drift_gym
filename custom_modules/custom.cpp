@@ -91,6 +91,7 @@ void create_cell_types(void) {
     */
 
     display_cell_definitions(std::cout);
+     std::cout << "BUE: HERE WE GO AGAIN!" << std::endl;
 
     return;
 }

@@ -14,7 +14,7 @@
     </domain>
 
     <overall>
-        <max_time units="min">1440.0</max_time> <!-- bue: 720.0 1440.0 10080.0 -->
+        <max_time units="min">180.0</max_time> <!-- bue: 90.0. 180.0 360.0 720.0 1440.0 10080.0 -->
         <time_units>min</time_units>
         <space_units>micron</space_units>
         <dt_diffusion units="min">0.01</dt_diffusion>
@@ -227,7 +227,7 @@
         <my_int type="int" units="none" description="">0</my_int>
         <my_bool type="bool" units="none" description="">false</my_bool>
         <my_str type="string" units="none" description="">abc</my_str>
-        <drug_dose type="double" units="[fraction]" description="">0.0</drug_dose>
+        <drug_dose type="double" units="fraction" description="">0.0</drug_dose>
         <cell_count type="int" units="dimensionless" description="">0</cell_count>
     </user_parameters>
 </PhysiCell_settings>
