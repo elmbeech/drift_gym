@@ -257,6 +257,7 @@ static PyObject* physicell_restart(PyObject *self, PyObject *args) {
     }
 
     // standard outout
+    display_cell_definitions(std::cout);  // bue: because I don't create_cell_types();
     display_citations();
     display_simulation_status(std::cout);
 
