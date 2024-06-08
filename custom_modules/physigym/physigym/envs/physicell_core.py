@@ -293,7 +293,10 @@ class CorePhysiCellEnv(gymnasium.Env):
         if (self.episode <= 0):
             physicell.start()
         else:
-            physicell.restart()
+            # bue 20240608: restart worx! work on reset.
+	    #physicell.restart()
+	    physicell.reset()
+	    physicell.start()
 
         # observe domain
         if self.verbose:
