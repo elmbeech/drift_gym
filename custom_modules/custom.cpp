@@ -29,8 +29,11 @@ void random_seed(void) {
     return;
 }
 
+//bool episode_zero = true;
+//PhysiCell::Cell_Definition cell_defaults_copy;
 
 void create_cell_types(void) {
+    //SeedRandom( parameters.ints("random_seed") );
     /*
        Put any modifications to default cell definition here if you
        want to have "inherited" by other cell types.
@@ -38,6 +41,27 @@ void create_cell_types(void) {
        This is a good place to set default functions.
     */
 
+    // bue 2024-06-13: begin reset cell definition for each episode
+    //if (episode_zero) {
+        //cell_defaults_copy = cell_defaults;
+    //    episode_zero = false;
+    //} else {
+        //cell_defaults = &cell_defaults_copy;
+    cell_defaults = PhysiCell::Cell_Definition();
+    PhysiCell::cell_definitions_by_index.clear();
+    PhysiCell::cell_definitions_by_index.push_back(&cell_defaults);
+        //for (unsigned int i=1; i < cell_definitions_by_index.size(); i++) {
+        //    cell_definitions_by_index.pop_back();
+        //}
+    //}
+    PhysiCell::cell_definitions_by_name_constructed = false;
+    PhysiCell::cell_definition_indices_by_name.clear();
+    PhysiCell::cell_definition_indices_by_type.clear();
+    PhysiCell::cell_definitions_by_name.clear();
+    PhysiCell::cell_definitions_by_type.clear();
+    // bue 2024-06-13: end reset cell definition for each episode
+
+    // run the usual code
     initialize_default_cell_definition();
     cell_defaults.phenotype.secretion.sync_to_microenvironment(&microenvironment);
 

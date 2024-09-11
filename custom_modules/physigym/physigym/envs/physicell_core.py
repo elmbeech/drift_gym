@@ -290,13 +290,7 @@ class CorePhysiCellEnv(gymnasium.Env):
         if self.verbose:
             print(f'physigym: declare PhysiCell model instance.')
         os.makedirs(self.x_root.xpath('//save/folder')[0].text, exist_ok=True)
-        if (self.episode <= 0):
-            physicell.start()
-        else:
-            # bue 20240608: restart worx! work on reset.
-            #physicell.restart()
-            #physicell.reset()
-            physicell.start()
+        physicell.start()
 
         # observe domain
         if self.verbose:
@@ -415,24 +409,24 @@ class CorePhysiCellEnv(gymnasium.Env):
                 # try custom_vector
                 try:
                     physicell.set_vector(s_action, o_value)
-                except ValueError:  # bue 20250528: embedding gives ValueError back.
+                except KeyError:  # bue 20250528: embedding gives ValueError back.
                     if (o_value.shape == (1,)):
                         o_value = o_value[0]
                     else:
                         # error
-                        sys.exit(f"Error @ physigym.envs.physicell_core.CorePhysiCellEnv : unprocessable variable type detected! {s_action} {type(o_value)} {o_value}.")
+                        sys.exit(f"Error @ physigym.envs.physicell_core.CorePhysiCellEnv : unprocessable vector type detected! {s_action} {type(o_value)} {o_value}.")
 
-            if  not (type(o_value) in {np.ndarray, np.array, list, tuple}):
+            if not (type(o_value) in {np.ndarray, np.array, list, tuple}):
                 try:
                     # try custom_variable
                     physicell.set_variable(s_action, o_value)
-                except ValueError:  # bue 20250528: embedding gives ValueError back.
+                except KeyError:  # bue 20250528: embedding gives ValueError back.
                     # try parameter
                     try:
                         physicell.set_parameter(s_action, o_value)
                     except:
                         # error
-                        sys.exit(f"Error @ physigym.envs.physicell_core.CorePhysiCellEnv : unprocessable variable type detected! {s_action} {type(o_value)} {o_value}.")
+                        sys.exit(f"Error @ physigym.envs.physicell_core.CorePhysiCellEnv : unprocessable parameter or variable type detected! {s_action} {type(o_value)} {o_value}.")
 
         # do dt_gym time step
         if self.verbose:
